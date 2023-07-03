@@ -1,6 +1,3 @@
-module Matrices
-using LinearAlgebra
-
 
 # Heat transfer matrix
 function BuildHeatTransMatrix(N::Int64,dx::Float64)
@@ -15,7 +12,7 @@ function BuildHeatTransMatrix(N::Int64,dx::Float64)
         K[i,i] = -sum(K[i,:])
     end
     
-    K[1,:] .= 0
+    K[1,:] .=  0
     K[end,:] .= 0
     
     return K
@@ -35,9 +32,8 @@ function BuildResistanceMatrix(N::Int64)
 end
 
 function BuildThermalMassMatrix(N)
-    return Diagonal([0; ones(N-2) ;0])
+    return Diagonal(ones(N))
 end
-
 
 function BuildMkcl(N)
     Mkcl = zeros(N,N-1)
@@ -50,10 +46,7 @@ function BuildMkcl(N)
     return Mkcl
 end
 
-
 function BuildMkvl(N)
     return BuildMkcl(N)'
 end
 
-
-end
