@@ -50,3 +50,10 @@ function BuildMkvl(N)
     return BuildMkcl(N)'
 end
 
+function Node2Cell(N)
+    return spdiagm(N-1,N, 0=> 1/2*ones(N-1),1=>1/2*ones(N-1))
+end
+
+function Cell2Node(N)
+    return Node2Cell(N)' 
+end
